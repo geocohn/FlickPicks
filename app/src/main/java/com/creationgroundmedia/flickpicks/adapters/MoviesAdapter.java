@@ -54,15 +54,15 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         Movie movie = mMovies.get(position);
         holder.tvTitle.setText(movie.getOriginalTitle());
         holder.tvOverview.setText(movie.getOverView());
-        if (holder.ivPoster != null) {
-            show(movie.getPosterPath(), holder.ivPoster, holder.pbImage);
-        }
-        if (holder.ivBackdrop != null) {
-            show(movie.getBackdropPath(), holder.ivBackdrop, holder.pbImage);
+        boolean isHorizontal = holder.ivBackdrop != null;
+        if (isHorizontal) {
+            show(movie.getBackdropPath(), holder.ivBackdrop, holder.pbImage, 720);
+        } else {
+            show(movie.getPosterPath(), holder.ivPoster, holder.pbImage, 342);
         }
     }
 
-    private void show(String imageURL, final ImageView ivImage, final ProgressBar pbImage) {
+    private void show(String imageURL, final ImageView ivImage, final ProgressBar pbImage, final int imageSize) {
         Picasso.with(getContext())
                 .load(imageURL)
                 .error(R.drawable.image_not_found)
@@ -74,7 +74,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
                     @Override
                     public void onError() {
-                        ScaleDrawableInto(R.drawable.image_not_found, ivImage, 342);
+                        ScaleDrawableInto(R.drawable.image_not_found, ivImage, imageSize);
                         pbImage.setVisibility(View.GONE);
                     }
                 });
