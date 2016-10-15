@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:src  ="@mipmap/ic_launcher"
-        android:id="@+id/ivPoster"
+        android:id="@+id/ivBackdrop"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
@@ -21,10 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pbImage"
-        app:layout_constraintTop_toTopOf="@+id/ivPoster"
-        app:layout_constraintBottom_toBottomOf="@+id/ivPoster"
-        app:layout_constraintRight_toRightOf="@+id/ivPoster"
-        app:layout_constraintLeft_toLeftOf="@+id/ivPoster" />
+        app:layout_constraintTop_toTopOf="@+id/ivBackdrop"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBackdrop"
+        app:layout_constraintRight_toRightOf="@+id/ivBackdrop"
+        app:layout_constraintLeft_toLeftOf="@+id/ivBackdrop" />
 
     <TextView
         android:text="TextView"
@@ -33,12 +33,12 @@
         android:id="@+id/tvTitle"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/ivPoster"
+        app:layout_constraintLeft_toRightOf="@+id/ivBackdrop"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
-        app:layout_constraintTop_toTopOf="@+id/ivPoster"
+        app:layout_constraintTop_toTopOf="@+id/ivBackdrop"
         android:textColor="@color/colorText" />
 
     <TextView
@@ -47,13 +47,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvOverview"
         android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/ivPoster"
+        app:layout_constraintLeft_toRightOf="@+id/ivBackdrop"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        android:layout_marginTop="8dp"
         android:textColor="@color/colorText" />
-
 </android.support.constraint.ConstraintLayout>
