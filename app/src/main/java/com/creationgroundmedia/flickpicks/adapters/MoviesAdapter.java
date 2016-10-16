@@ -15,7 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.creationgroundmedia.flickpicks.R;
+import com.creationgroundmedia.flickpicks.activities.FlickDetailActivity;
 import com.creationgroundmedia.flickpicks.models.Movie;
+import com.creationgroundmedia.flickpicks.util.DisplayImage;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -51,15 +53,29 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Movie movie = mMovies.get(position);
+        final Movie movie = mMovies.get(position);
         holder.tvTitle.setText(movie.getOriginalTitle());
         holder.tvOverview.setText(movie.getOverView());
         boolean isHorizontal = holder.ivBackdrop != null;
         if (isHorizontal) {
-            show(movie.getBackdropPath(), holder.ivBackdrop, holder.pbImage, 720);
+            DisplayImage.show(getContext(), movie.getBackdropPath(), holder.ivBackdrop, holder.pbImage, 720);
         } else {
-            show(movie.getPosterPath(), holder.ivPoster, holder.pbImage, 342);
+            DisplayImage.show(getContext(), movie.getPosterPath(), holder.ivPoster, holder.pbImage, 342);
         }
+        holder.vItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FlickDetailActivity
+                        .launchInstance(mContext,
+                                movie.getBackdropPath(),
+                                movie.getId(),
+                                movie.getOriginalTitle(),
+                                movie.getOverView(),
+                                movie.getPopularity(),
+                                movie.getPosterPath(),
+                                movie.getVoteAverage());
+            }
+        });
     }
 
     private void show(String imageURL, final ImageView ivImage, final ProgressBar pbImage, final int imageSize) {
@@ -110,6 +126,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        View vItem;
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
@@ -119,6 +136,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         public ViewHolder(View itemView) {
             super(itemView);
 
+            vItem = itemView;
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             tvOverview = (TextView) itemView.findViewById(R.id.tvOverview);
             ivPoster = (ImageView) itemView.findViewById(R.id.ivPoster);
