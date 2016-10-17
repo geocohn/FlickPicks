@@ -44,10 +44,22 @@ Here's a walkthrough of implemented user stories:
 <img src='./screenshots/walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 Screen capture made using Android Studio 2.2.1.
-GIF created on [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes) using [ffmpeg](http://ffmpeg.org/) and [convert](http://www.imagemagick.org/script/convert.php).
+GIF created on [Ubuntu 16.04](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes) using [ffmpeg](http://ffmpeg.org/) and [convert](http://www.imagemagick.org/script/convert.php):
+
+```
+ffmpeg -i device-2016-10-16-174544.mp4 -vf scale=400:-1 -r 5 'frames/frame-%03d.png'
+cd frames
+convert -delay 20 -loop 0 *.png walkthrough.gif
+```
+
 ## Notes
 
-Describe any challenges encountered while building the app.
+Would have loved to show trailers, but ran out of time. In a previous app I found it simple to achieve a full screen YouTube play using a single line of code:
+
+```
+startActivity(new Intent(Intent.ACTION_VIEW,
+  Uri.parse("https://www.youtube.com/watch?v=" + youtubeKey)));
+```
 
 ## Open-source libraries used
 
