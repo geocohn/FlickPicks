@@ -71,6 +71,7 @@ public class FlickDetailActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_flick_detail);
 
+        setTitle(mMovie.getOriginalTitle());
 
         ImageView ivBackdrop = (ImageView) findViewById(R.id.iv_detail_backdrop);
         ImageView ivPoster = (ImageView) findViewById(R.id.iv_detail_poster);
